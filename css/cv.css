@@ -1,0 +1,178 @@
+:root {
+  --fg: #111;
+  --muted: #555;
+  --accent: #0a7c5f;
+  --bg: #ffffff;
+  --max-width: 760px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+.site-header {
+  max-width: var(--max-width);
+  margin: 3rem auto 2rem;
+  padding: 0 1.25rem;
+}
+
+.site-header h1 {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin: 0.25rem 0;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+section {
+  margin: 2.5rem 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.25rem;
+}
+
+/* Collapsible sections */
+details {
+  margin: 0;
+}
+
+summary {
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.25rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+summary:hover {
+  color: var(--accent);
+}
+
+.section-content {
+  margin-top: 1rem;
+}
+
+.item {
+  margin: 1.2rem 0;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.item-header img {
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.date {
+  color: var(--muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.role {
+  margin: 0.25rem 0;
+  font-style: italic;
+}
+
+ul {
+  margin: 0.4rem 0 0.8rem 1.1rem;
+}
+
+/* Poster grid for films section */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.poster-item {
+  text-align: center;
+}
+
+.poster-item img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.poster-item img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.poster-title {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.poster-date {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+footer {
+  max-width: var(--max-width);
+  margin: 4rem auto 2rem;
+  padding: 0 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
