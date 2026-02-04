@@ -115,6 +115,10 @@ summary:hover {
   margin-right: 8px;
 }
 
+.item-header + p {
+  margin-top: 0.25rem;
+}
+
 .date {
   color: var(--muted);
   font-weight: 400;
