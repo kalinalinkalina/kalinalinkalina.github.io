@@ -2309,6 +2309,7 @@
       const prevButton = document.getElementById('jump-prev');
       const nextButton = document.getElementById('jump-next');
       const sectionAnchors = Array.from(document.querySelectorAll('main section details > summary'));
+      let activeScrollAnimation = null;
       const sectionLabelMap = {
         'Education': 'Education',
         'Internships': 'Intern',
@@ -2372,6 +2373,45 @@
         return -1;
       }
 
+      function animateScrollTo(targetY) {
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+
+        if (Math.abs(distance) < 1) {
+          return;
+        }
+
+        if (activeScrollAnimation !== null) {
+          window.cancelAnimationFrame(activeScrollAnimation);
+          activeScrollAnimation = null;
+        }
+
+        // Keep speed roughly constant so longer jumps visibly take longer.
+        const pixelsPerMs = 2.5;
+        const duration = Math.max(220, Math.abs(distance) / pixelsPerMs);
+        let startTime = null;
+
+        function step(timestamp) {
+          if (startTime === null) {
+            startTime = timestamp;
+          }
+
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const nextY = startY + (distance * progress);
+          window.scrollTo(0, nextY);
+
+          if (progress < 1) {
+            activeScrollAnimation = window.requestAnimationFrame(step);
+          } else {
+            activeScrollAnimation = null;
+            updateJumpButtonState();
+          }
+        }
+
+        activeScrollAnimation = window.requestAnimationFrame(step);
+      }
+
       function scrollToSection(index) {
         if (index < 0 || index >= sectionAnchors.length) {
           return;
@@ -2383,7 +2423,7 @@
           details.open = true;
         }
 
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        animateScrollTo(getAnchorDocumentTop(target));
       }
 
       function setButtonState(button, directionSymbol, directionWord, targetIndex) {
