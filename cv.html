@@ -2388,7 +2388,9 @@
 
         // Keep speed roughly constant so longer jumps visibly take longer.
         const pixelsPerMs = 2.5;
-        const duration = Math.max(220, Math.abs(distance) / pixelsPerMs);
+        const easeDurationMs = 180;
+        const duration = Math.max((easeDurationMs * 2) + 40, Math.abs(distance) / pixelsPerMs);
+        const easePortion = easeDurationMs / duration;
         let startTime = null;
 
         function step(timestamp) {
@@ -2398,7 +2400,19 @@
 
           const elapsed = timestamp - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          const nextY = startY + (distance * progress);
+          const normalization = 1 - easePortion;
+          let easedProgress;
+
+          if (progress <= easePortion) {
+            easedProgress = (progress * progress) / (2 * easePortion * normalization);
+          } else if (progress >= 1 - easePortion) {
+            const remaining = 1 - progress;
+            easedProgress = 1 - ((remaining * remaining) / (2 * easePortion * normalization));
+          } else {
+            easedProgress = (progress - (easePortion / 2)) / normalization;
+          }
+
+          const nextY = startY + (distance * easedProgress);
           window.scrollTo(0, nextY);
 
           if (progress < 1) {
