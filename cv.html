@@ -2263,8 +2263,8 @@
   </main>
 
   <nav class="section-jump-nav" aria-label="Section navigation">
-    <button type="button" id="jump-prev" class="jump-btn" aria-label="Jump to previous section">↑ Prev</button>
-    <button type="button" id="jump-next" class="jump-btn" aria-label="Jump to next section">↓ Next</button>
+    <button type="button" id="jump-prev" class="jump-btn" aria-label="Jump to previous section">↑</button>
+    <button type="button" id="jump-next" class="jump-btn" aria-label="Jump to next section">↓</button>
   </nav>
 
   <footer>
@@ -2309,22 +2309,67 @@
       const prevButton = document.getElementById('jump-prev');
       const nextButton = document.getElementById('jump-next');
       const sectionAnchors = Array.from(document.querySelectorAll('main section details > summary'));
+      const sectionLabelMap = {
+        'Education': 'Education',
+        'Internships': 'Intern',
+        'Work Experience': 'Work',
+        'Graphics for Film and Event Productions': 'Films',
+        'Select Software Projects': 'Software',
+        'Publications': 'Research',
+        'Provisional Patents': 'Patents',
+        'Awards & Honors': 'Honors',
+        'Certifications': 'Certs',
+        'Award-Winning Films and Visualizations': 'Awards',
+        'Additional Visualization and Film Festival Selections': 'Festivals',
+        'Mentored Students\' Awards': 'Mentorship',
+        'Service': 'Service',
+        'Select Grants as PI or Senior Personnel': 'Grants',
+        'Presentations': 'Talks',
+        'Press': 'Press',
+        'Skills': 'Skills'
+      };
 
-      function getCurrentSectionIndex() {
-        if (sectionAnchors.length === 0) {
-          return -1;
+      function getSectionLabel(anchor) {
+        const fullTitle = anchor.textContent.trim();
+        if (sectionLabelMap[fullTitle]) {
+          return sectionLabelMap[fullTitle];
         }
 
-        const referenceLine = window.innerHeight * 0.35;
-        let currentIndex = 0;
+        const fallbackWord = fullTitle
+          .replace(/[^A-Za-z0-9\s]/g, '')
+          .split(/\s+/)
+          .find(Boolean);
+
+        return fallbackWord || 'Section';
+      }
+
+      function getAnchorDocumentTop(anchor) {
+        return anchor.getBoundingClientRect().top + window.scrollY;
+      }
+
+      function getPreviousSectionIndex() {
+        const currentY = window.scrollY;
+        let prevIndex = -1;
 
         sectionAnchors.forEach((anchor, index) => {
-          if (anchor.getBoundingClientRect().top <= referenceLine) {
-            currentIndex = index;
+          if (getAnchorDocumentTop(anchor) < currentY - 12) {
+            prevIndex = index;
           }
         });
 
-        return currentIndex;
+        return prevIndex;
+      }
+
+      function getNextSectionIndex() {
+        const currentY = window.scrollY;
+
+        for (let index = 0; index < sectionAnchors.length; index += 1) {
+          if (getAnchorDocumentTop(sectionAnchors[index]) > currentY + 12) {
+            return index;
+          }
+        }
+
+        return -1;
       }
 
       function scrollToSection(index) {
@@ -2341,26 +2386,51 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
-      function updateJumpButtonState() {
-        const currentIndex = getCurrentSectionIndex();
-        if (currentIndex === -1) {
-          prevButton.disabled = true;
-          nextButton.disabled = true;
+      function setButtonState(button, directionSymbol, directionWord, targetIndex) {
+        if (targetIndex === -1) {
+          button.classList.add('is-hidden');
+          button.disabled = true;
           return;
         }
 
-        prevButton.disabled = currentIndex <= 0;
-        nextButton.disabled = currentIndex >= sectionAnchors.length - 1;
+        const targetAnchor = sectionAnchors[targetIndex];
+        button.classList.remove('is-hidden');
+        button.disabled = false;
+        button.textContent = directionSymbol + ' ' + getSectionLabel(targetAnchor);
+        button.setAttribute('aria-label', 'Jump to ' + directionWord + ' section: ' + targetAnchor.textContent.trim());
+      }
+
+      function renderJumpButtons(prevIndex, nextIndex) {
+        setButtonState(prevButton, '↑', 'previous', prevIndex);
+        setButtonState(nextButton, '↓', 'next', nextIndex);
+      }
+
+      function updateJumpButtonsForTarget(targetIndex) {
+        const prevIndex = targetIndex > 0 ? targetIndex - 1 : -1;
+        const nextIndex = targetIndex < sectionAnchors.length - 1 ? targetIndex + 1 : -1;
+        renderJumpButtons(prevIndex, nextIndex);
+      }
+
+      function updateJumpButtonState() {
+        const prevIndex = getPreviousSectionIndex();
+        const nextIndex = getNextSectionIndex();
+        renderJumpButtons(prevIndex, nextIndex);
       }
 
       prevButton.addEventListener('click', function() {
-        const currentIndex = getCurrentSectionIndex();
-        scrollToSection(currentIndex - 1);
+        const prevIndex = getPreviousSectionIndex();
+        if (prevIndex !== -1) {
+          updateJumpButtonsForTarget(prevIndex);
+          scrollToSection(prevIndex);
+        }
       });
 
       nextButton.addEventListener('click', function() {
-        const currentIndex = getCurrentSectionIndex();
-        scrollToSection(currentIndex + 1);
+        const nextIndex = getNextSectionIndex();
+        if (nextIndex !== -1) {
+          updateJumpButtonsForTarget(nextIndex);
+          scrollToSection(nextIndex);
+        }
       });
 
       window.addEventListener('scroll', updateJumpButtonState, { passive: true });

@@ -432,7 +432,7 @@ footer {
 }
 
 .jump-btn {
-  min-width: 7.5rem;
+  min-width: 7rem;
   padding: 0.6rem 0.95rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -444,6 +444,7 @@ footer {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 22px rgba(15, 23, 42, 0.28);
   transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
 }
 
 .jump-btn:hover {
@@ -455,6 +456,13 @@ footer {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
+}
+
+.jump-btn.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
 }
 
 /* Responsive Design */
