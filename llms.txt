@@ -1,12 +1,19 @@
 # Kalina Borkiewicz
 
-> Kalina Borkiewicz is a computer graphics and data visualization researcher, creative technologist, software engineer, and director. Her work spans scientific visualization, human-computer interaction, computer vision, artificial intelligence, visual journalism, creative technology, and large-scale software systems.
+> Kalina Borkiewicz is an interdisciplinary visual-computing researcher and R&D leader who moves between research, creative practice, technology, and real-world applications. She originates new technical directions, builds teams and programs around them, and remains hands-on with prototypes, code, tools, and visual experiences.
 
 Canonical website: https://kalinaborkiewicz.com/
 
 ## About
 
-Kalina combines technical depth with creative direction. She sets direction and builds interdisciplinary teams while remaining hands-on with code, tools, research, and imagery. She is pursuing a PhD in computer graphics and data visualization at the University of Utah. Previously, she spent a decade at the National Center for Supercomputing Applications (NCSA), where she became Director of the Advanced Visualization Lab and founded the 37-person Visualization Program Office.
+Kalina combines technical depth with creative direction and substantial organizational leadership. She spent a decade at the National Center for Supercomputing Applications (NCSA), rising from research software engineer to Director of the Advanced Visualization Lab and founding the Visualization Program Office. She now serves as an ACM SIGGRAPH Executive Committee Director and is pursuing a PhD in computer graphics and data visualization at the University of Utah as a continuation of that established interdisciplinary practice, not as the beginning of her professional career.
+
+## What her work demonstrates
+
+- Research direction: identifying consequential opportunities where emerging technology meets creative practice and human needs.
+- Organizations and teams: founding programs, setting strategy, developing funding opportunities, and leading interdisciplinary researchers, engineers, designers, and domain experts.
+- Hands-on invention: prototyping, programming, testing, and shaping experiences across machine learning, computer vision, 3D systems, visualization pipelines, and visual storytelling.
+- Translation into practice: carrying ideas between research, production, journalism, software, films, museums, and live public experiences.
 
 ## Areas of expertise
 
@@ -21,11 +28,11 @@ Kalina combines technical depth with creative direction. She sets direction and 
 
 ## Selected work
 
-- [Cinematic scientific visualization](https://kalinaborkiewicz.com/#cinematic-science): Research data transformed into imagery for IMAX films, planetariums, museums, concerts, television, and the ACM SIGGRAPH Electronic Theater. Credits include *A Beautiful Planet*, *Solar Superstorms*, *Atlas of a Changing Earth*, and *Einstein's Incredible Universe*.
+- [Research and invention](https://kalinaborkiewicz.com/#software-at-scale): Work spanning AI-assisted 3D authoring at Autodesk Research, Apple Photos, clinical systems at Intelligent Medical Objects, supercomputer rendering pipelines, and the open-source Ytini visualization tool.
 - [Visual journalism](https://kalinaborkiewicz.com/#visual-journalism): Computer vision, machine learning, spatial analysis, and graphics work at The New York Times. The Paris Olympics coverage won the 2025 Online Journalism Award for Excellence in Sports Reporting.
-- [Software at scale](https://kalinaborkiewicz.com/#software-at-scale): Engineering work spanning Apple Photos, AI-assisted 3D authoring tools at Autodesk Research, clinical systems at Intelligent Medical Objects, supercomputer rendering pipelines, and the open-source Ytini visualization tool.
+- [Cinematic scientific visualization](https://kalinaborkiewicz.com/#cinematic-science): Research data transformed into imagery for IMAX films, planetariums, museums, concerts, television, and the ACM SIGGRAPH Electronic Theater. Credits include *A Beautiful Planet*, *Solar Superstorms*, *Atlas of a Changing Earth*, and *Einstein's Incredible Universe*.
 - [CrowdFX Labs](https://kalinaborkiewicz.com/#crowdfx-labs): Real-time experiences that turn thousands of audience members into active participants in shared games, polling, and art.
-- [Creative leadership](https://kalinaborkiewicz.com/#creative-leadership): Founder of NCSA's Visualization Program Office, former Director of NCSA's Advanced Visualization Lab, and former Director of the Oscar-qualifying ACM SIGGRAPH Electronic Theater.
+- [Research and creative leadership](https://kalinaborkiewicz.com/#creative-leadership): Founder of NCSA's Visualization Program Office, former Director of NCSA's Advanced Visualization Lab, former Director of the Oscar-qualifying ACM SIGGRAPH Electronic Theater, and current ACM SIGGRAPH Executive Committee Director.
 
 ## Organizations
 
