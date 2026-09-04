@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Allow OpenAI's search crawler so this site can appear in ChatGPT search.
+User-agent: OAI-SearchBot
+Allow: /
+
+# Allow pages to be fetched when a user asks ChatGPT to visit them.
+User-agent: ChatGPT-User
+Allow: /
+
+# Search visibility and model training are separate. Do not use this site for training.
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://kalinaborkiewicz.com/sitemap.xml
